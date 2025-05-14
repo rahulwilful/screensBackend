@@ -5,9 +5,9 @@ const validateToken = require("../middleWare/validateToken.js");
 
 const {
   ApproveUser,
+  CreateSuperAdmin,
   CreateToken,
   CreateUser,
-  CreateSuperAdmin,
   DeleteItineraryById,
   DeleteUser,
   FacebookLogin,
@@ -16,6 +16,7 @@ const {
   GetItineraryById,
   GetItinerarys,
   GetNewUsers,
+  GetSearched,
   GetUserById,
   GetUsers,
   GoogleLogIn,
@@ -23,24 +24,27 @@ const {
   LogInUser,
   ResetPasword,
   SaveSearched,
-  GetSearched,
-  testUserAPI,
-  UnApproveUser,
-  UpdateProfileUrl,
-  UpdateItineraryById,
-  UpdateToken,
-  UpdateRoleType,
-  UpdateUser,
   SearchByName,
+  UnApproveUser,
+  UpdateItineraryById,
+  UpdateProfileUrl,
+  UpdateRoleType,
+  UpdateToken,
+  UpdateUser,
   VarifyUser,
   varifyEmail,
   saveItinerary,
+  testUserAPI,
 } = require("../controllers/user");
 
 //@desc Update Itineray By Id API
 //@route POST /api/v1/user/updateitinerarbyid/:id
 //@access Public
-router.post("/updateitinerarbyid/:id", [body("itineraryDays", "itineraryDays required").notEmpty()], UpdateItineraryById);
+router.post(
+  "/updateitinerarbyid/:id",
+  [body("itineraryDays", "itineraryDays required").notEmpty()],
+  UpdateItineraryById
+);
 
 //@desc delete Itineray By Id API
 //@route POST /api/v1/user/deleteitinerarbyid/:id
@@ -50,7 +54,11 @@ router.post("/deleteitinerarbyid/:id", DeleteItineraryById);
 //@desc Update Profile Url API
 //@route POST /api/v1/user/updateprofileurl/:id
 //@access Public
-router.post("/updateprofileurl/:id", [body("profile_url", "profile_url required").notEmpty()], UpdateProfileUrl);
+router.post(
+  "/updateprofileurl/:id",
+  [body("profile_url", "profile_url required").notEmpty()],
+  UpdateProfileUrl
+);
 
 //@desc Get Itinerays API
 //@route POST /api/v1/user/getitinerarybyid/:id/:itineraryid
@@ -88,7 +96,15 @@ router.post(
 //@access Public
 router.post(
   "/searched",
-  [body("destination", "destination required"), body("end_date", "end_date required"), body("start_date", "start_date required"), body("no_of_ppl", "no_of_ppl required"), body("preference", "preference required"), body("budget", "budget required"), body("id", "id required")],
+  [
+    body("destination", "destination required"),
+    body("end_date", "end_date required"),
+    body("start_date", "start_date required"),
+    body("no_of_ppl", "no_of_ppl required"),
+    body("preference", "preference required"),
+    body("budget", "budget required"),
+    body("id", "id required"),
+  ],
   SaveSearched
 );
 
@@ -100,7 +116,11 @@ router.get("/get-searched/:id", GetSearched);
 //@desc Facebook Sign Up API
 //@route POST /api/v1/user/facebooksignup
 //@access Public
-router.post("/facebooksignup", [body("name"), body("facebookId", "facebookId required")], FacebookSignUp);
+router.post(
+  "/facebooksignup",
+  [body("name"), body("facebookId", "facebookId required")],
+  FacebookSignUp
+);
 
 //@desc Create Token  API
 //@route GET /api/v1/user/createtoken/:id
@@ -115,17 +135,33 @@ router.post("/varifyemail/:id/:token", varifyEmail);
 //@desc Upadte Token  API
 //@route GET /api/v1/user/updatetoken/:id
 //@access Public
-router.post("/updatetoken/:id", [body("token", "Token for email not found").notEmpty()], UpdateToken);
+router.post(
+  "/updatetoken/:id",
+  [body("token", "Token for email not found").notEmpty()],
+  UpdateToken
+);
 
 //@desc Upadate Role Type  API
 //@route POST user/update_roletype/:id
 //@access Admin
-router.post("/update_roletype/:id", [body("role_type", "role_type requird").notEmpty()], UpdateRoleType);
+router.post(
+  "/update_roletype/:id",
+  [body("role_type", "role_type requird").notEmpty()],
+  UpdateRoleType
+);
 
 //@desc Google Sign In API
 //@route POST /api/v1/user/googlesignin
 //@access Public
-router.post("/googlesignup", [body("name"), body("email", "Email is not valid").isEmail(), body("googleId", "GoogleId required")], GoogleSignUp);
+router.post(
+  "/googlesignup",
+  [
+    body("name"),
+    body("email", "Email is not valid").isEmail(),
+    body("googleId", "GoogleId required"),
+  ],
+  GoogleSignUp
+);
 
 //@desc Test User API
 //@route GET /api/v1/user
@@ -149,17 +185,29 @@ router.post(
 //@desc Varify User  API
 //@route GET /api/v1/user/varifyuser
 //@access Public
-router.post("/varifyuser", [body("email", "Enter Valid Email").isEmail()], VarifyUser);
+router.post(
+  "/varifyuser",
+  [body("email", "Enter Valid Email").isEmail()],
+  VarifyUser
+);
 
 //@desc Google LogIn API
 //@route GET /api/v1/user/googlelogin
 //@access Public
-router.post("/googlelogin", [body("googleId", "googleId Not Found")], GoogleLogIn);
+router.post(
+  "/googlelogin",
+  [body("googleId", "googleId Not Found")],
+  GoogleLogIn
+);
 
 //@desc Facebook LogIn API
 //@route GET /api/v1/user/facebooklogin
 //@access Public
-router.post("/facebooklogin", [body("facebookId", "FacebookId required")], FacebookLogin);
+router.post(
+  "/facebooklogin",
+  [body("facebookId", "FacebookId required")],
+  FacebookLogin
+);
 
 //@desc Create User API
 //@route POST /api/v1/user/add
