@@ -8,7 +8,10 @@ const {
   addVideo,
   updateVideo,
   deleteVideo,
+<<<<<<< HEAD
   uploadVideo,
+=======
+>>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 } = require("../controllers/video.js");
 
 const videoRouter = express.Router();
@@ -63,9 +66,12 @@ videoRouter.put(
 // @access  Public
 videoRouter.delete("/delete/:id", deleteVideo);
 
+<<<<<<< HEAD
 // @desc    Upload Video
 // @route   POST /api/v1/video/upload
 // @access  Public
 videoRouter.post("/upload", uploadVideo);
 
+=======
+>>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 module.exports = videoRouter;

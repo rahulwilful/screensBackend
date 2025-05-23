@@ -2,6 +2,7 @@ const logger = require("../config/logger.js");
 const { validationResult, matchedData } = require("express-validator");
 const Video = require("../models/Video.js");
 
+<<<<<<< HEAD
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
@@ -20,6 +21,8 @@ cloudinary.config({
   api_secret: API_SECRET,
 });
 
+=======
+>>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 const testVideoAPI = async (req, res) => {
   return res.status(200).send("Video API test successful");
 };
@@ -119,6 +122,7 @@ const deleteVideo = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 // @desc    Upload Video
 // @route   POST /api/v1/video/upload
 // @access  Public
@@ -164,6 +168,8 @@ const uploadVideo = async (req, res) => {
   }
 };
 
+=======
+>>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 module.exports = {
   testVideoAPI,
   getAllVideos,
@@ -171,5 +177,8 @@ module.exports = {
   addVideo,
   updateVideo,
   deleteVideo,
+<<<<<<< HEAD
   uploadVideo,
+=======
+>>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 };
