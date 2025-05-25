@@ -2,7 +2,6 @@ const logger = require("../config/logger.js");
 const { validationResult, matchedData } = require("express-validator");
 const Video = require("../models/Video.js");
 
-<<<<<<< HEAD
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
@@ -21,8 +20,6 @@ cloudinary.config({
   api_secret: API_SECRET,
 });
 
-=======
->>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 const testVideoAPI = async (req, res) => {
   return res.status(200).send("Video API test successful");
 };
@@ -122,12 +119,13 @@ const deleteVideo = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
 // @desc    Upload Video
 // @route   POST /api/v1/video/upload
 // @access  Public
 const uploadVideo = async (req, res) => {
   console.log("req: ", req);
+
+  const data = matchedData(req);
 
   try {
     // Use multer to handle the file upload
@@ -156,8 +154,19 @@ const uploadVideo = async (req, res) => {
               message: "Something went wrong while uploading media",
             });
           } else {
+            console.log("result: ", result);
+
+            const video = Video.create({
+              secure_url: result.secure_url,
+              public_url: result.url,
+              public_id: result.public_id,
+              client_id: req.body.client_id,
+              location_id: req.body.location_id,
+              start_date: req.body.start_date,
+              end_date: req.body.end_date,
+            });
             logger.info("API video/upload | Video uploaded successfully");
-            return res.status(201).json({ result });
+            return res.status(201).json({ video });
           }
         }
       );
@@ -168,8 +177,6 @@ const uploadVideo = async (req, res) => {
   }
 };
 
-=======
->>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 module.exports = {
   testVideoAPI,
   getAllVideos,
@@ -177,8 +184,5 @@ module.exports = {
   addVideo,
   updateVideo,
   deleteVideo,
-<<<<<<< HEAD
   uploadVideo,
-=======
->>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 };

@@ -8,10 +8,7 @@ const {
   addVideo,
   updateVideo,
   deleteVideo,
-<<<<<<< HEAD
   uploadVideo,
-=======
->>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 } = require("../controllers/video.js");
 
 const videoRouter = express.Router();
@@ -66,12 +63,19 @@ videoRouter.put(
 // @access  Public
 videoRouter.delete("/delete/:id", deleteVideo);
 
-<<<<<<< HEAD
 // @desc    Upload Video
 // @route   POST /api/v1/video/upload
 // @access  Public
-videoRouter.post("/upload", uploadVideo);
+videoRouter.post(
+  "/upload",
+  [
+    body("client_id", "Enter Valid Client ID"),
+    body("location_id", "Enter Valid Client ID"),
+    body("start_date", "Enter Valid Start Date").optional().isISO8601(),
+    body("end_date", "Enter Valid End Date").optional().isISO8601(),
+    body("show_adv", "Enter Valid Show Add Status").optional().isBoolean(),
+  ],
+  uploadVideo
+);
 
-=======
->>>>>>> c26ddf2af5e2ff8fd3d0becded9c81543af29267
 module.exports = videoRouter;
