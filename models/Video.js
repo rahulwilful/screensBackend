@@ -28,6 +28,10 @@ const VideoSchema = new Schema(
       ref: "Location",
       required: true,
     },
+    floor_id: {
+      type: "ObjectId",
+      ref: "Location",
+    },
     start_date: {
       type: Date,
       default: null,
