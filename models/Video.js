@@ -42,6 +42,10 @@ const VideoSchema = new Schema(
     },
     show_adv: {
       type: Boolean,
+      default: true,
+    },
+    is_deleted: {
+      type: Boolean,
       default: false,
     },
   },
