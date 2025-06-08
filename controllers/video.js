@@ -236,6 +236,38 @@ const showVideo = async (req, res) => {
   }
 };
 
+// @desc    show Video
+// @route   POST /api/v1/video/completely/recover/:id
+// @access  Public
+const completelyRecoverVideo = async (req, res) => {
+  const { public_id } = req.params;
+  try {
+    const video = await Video.findOneAndUpdate(
+      { public_id: public_id },
+      {
+        is_deleted: false,
+        show_adv: true,
+      },
+      {
+        new: true,
+      }
+    );
+    if (!video) {
+      return res.status(404).json({ message: "Video not found" });
+    }
+    logger.info(`API video/delete/${public_id} | Video shown successfully`);
+    return res
+      .status(200)
+      .json({
+        result: video,
+        message: "Video completely recoverd successfully",
+      });
+  } catch (err) {
+    logger.error(`API video/delete/${public_id} | Error: ${err}`);
+    return res.status(400).json({ message: err.message });
+  }
+};
+
 // @desc    Upload Video
 // @route   POST /api/v1/video/upload
 // @access  Public
@@ -305,5 +337,6 @@ module.exports = {
   updateVideo,
   deleteVideo,
   recoverVideo,
+  completelyRecoverVideo,
   uploadVideo,
 };

@@ -13,6 +13,7 @@ const {
   showVideo,
   hideVideo,
   uploadVideo,
+  completelyRecoverVideo,
 } = require("../controllers/video.js");
 
 const videoRouter = express.Router();
@@ -76,6 +77,11 @@ videoRouter.delete("/delete/:public_id", deleteVideo);
 // @route   DELETE /api/v1/video/recover/:id
 // @access  Public
 videoRouter.post("/recover/:public_id", recoverVideo);
+
+// @desc    show Video
+// @route   POST /api/v1/video/completely/recover/:id
+// @access  Public
+videoRouter.post("/completely/recover/:public_id", completelyRecoverVideo);
 
 // @desc    show Video
 // @route   POST /api/v1/video/show/:id
